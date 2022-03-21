@@ -1,0 +1,51 @@
+<div *ngIf="employees.length == 0">
+  <span>No data yet</span>
+</div>
+<div *ngIf="employees.length > 0">
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Position</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of employees">
+          <td scope="row">{{ element.employeeName }}</td>
+          <td>{{ element.employeeSurname }}</td>
+          <td>{{ element.employeeAge }}</td>
+          <td>{{ element.employeePosition }}</td>
+          <td>{{ element.employeeSalary | currency: "USD" }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="onShow($event, element)">
+              Show
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="selectedEmployee != null">
+  <fieldset>
+    <legend>Data</legend>
+    <label>Employee Name : {{ selectedEmployee.employeeName }}</label
+    ><br />
+    <label>Employee Surname : {{ selectedEmployee.employeeSurname }}</label
+    ><br />
+    <label>Employee Age : {{ selectedEmployee.employeeAge }}</label
+    ><br />
+    <label
+      >Employee Salary :
+      {{ selectedEmployee.employeeSalary | currency: "USD" }}</label
+    ><br />
+    <label>Employee Position : {{ selectedEmployee.employeePosition }}</label
+    ><br />
+  </fieldset>
+</div>
+<input type="button" class="btn btn-primary" value="Test Button" />
