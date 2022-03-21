@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
+type Employee = {
+  employeeName: string;
+  employeeSurname: string;
+  employeeAge: number;
+  employeeSalary: number;
+  employeePosition: string;
+};
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent implements OnInit {
-  selectedEmployee: any = null;
+  selectedEmployee: Employee | null = null;
 
-  employees: any[] = [
+  employees: Employee[] = [
     {
       employeeName: 'Emma',
       employeeSurname: 'Smith',
@@ -42,7 +50,11 @@ export class TestComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  onShow(event: any, data: any) {
-    this.selectedEmployee = data;
+  onShow(event: Event, element: Employee) {
+    this.selectedEmployee = element;
+
+    setTimeout(() => {
+      this.selectedEmployee = null;
+    }, 2000);
   }
 }
